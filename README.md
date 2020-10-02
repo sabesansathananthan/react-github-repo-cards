@@ -53,7 +53,7 @@ npm start
 `https://api.github.com/repos/sabesansathananthan/${repo}`;
 ```
 
-2. Open [`GithubCards.js`](./src/components/GithubCards.js) in the Components folder. Replace your repository names
+2. Open [`GitHubCards.js`](./src/components/GitHubCards.js) in the Components folder. Replace your repository names
 
 ```JavaScript
 let repo = [
@@ -68,7 +68,7 @@ let repo = [
     ];
 ```
 
-3. Add your github personal access tokens in [`GithubCards.js`](./src/components/GithubCards.js)
+3. Add your github personal access tokens in [`GitHubCards.js`](./src/components/GitHubCards.js)
 
 ```JavaScript
 headers: {
