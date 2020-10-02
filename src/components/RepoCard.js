@@ -129,7 +129,7 @@ const RepoCard = ({ repo, language }) => {
                   color: "#551A8B",
                 }}
               >
-                <span className="octicon octicon-git-branch">
+                <span className="octicon octicon-repo-forked">
                   {repo.forks_count}
                 </span>
               </a>
