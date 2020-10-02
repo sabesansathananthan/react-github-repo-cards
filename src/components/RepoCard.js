@@ -84,7 +84,7 @@ const RepoCard = ({ repo, language }) => {
         />
 
         <CardContent className={classes.cardContent}>
-          <Typography>{repo.description}</Typography>
+          <Typography variant="body1">{repo.description}</Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
           {repo.language ? (
