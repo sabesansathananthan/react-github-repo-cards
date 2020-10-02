@@ -8,6 +8,12 @@ This application aims to show the Github repositories of the user in his/her rea
 
 ---
 
+## ScreenShot
+
+![image](./docs/ScreenShot.JPG)
+
+---
+
 ## Technologies used 🛠️
 
 - [React](https://es.reactjs.org/) - Front-End JavaScript library
@@ -36,6 +42,39 @@ npm start
 ```
 
 4. Visit http://localhost:3000
+
+---
+
+## Configuration
+
+1. Open [`GitHub.js`](./src/api/GitHub.js) in the api folder. Use your medium user name👤 instead of sabesansathananthan.
+
+```JavaScript
+`https://api.github.com/repos/sabesansathananthan/${repo}`;
+```
+
+2. Open [`GithubCards.js`](./src/components/GithubCards.js) in the Components folder. Replace your repository names
+
+```JavaScript
+let repo = [
+      baseURL(`covid-19-tracker`),
+      baseURL(`material-ui-medium-blog`),
+      baseURL(`github-readme-medium-card`),
+      baseURL(`react-youtube-search-clone`),
+      baseURL(`tamil-song-corpus`),
+      baseURL(`Nozama_Warriors`),
+      baseURL(`Nursery_Management`),
+      baseURL(`React-Medium-Blog`),
+    ];
+```
+
+3. Add your github personal access tokens in [`GithubCards.js`](./src/components/GithubCards.js)
+
+```JavaScript
+headers: {
+            Authorization: "token YOUR_PERSONAL_ACCESS_TOKEN",
+          }
+```
 
 ---
 
