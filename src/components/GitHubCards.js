@@ -21,6 +21,8 @@ class GitHubCards extends Component {
   };
 
   async componentDidMount() {
+    const api_key = process.env.REACT_APP_API_KEY;
+
     let repo = [
       baseURL(`covid-19-tracker`),
       baseURL(`material-ui-medium-blog`),
@@ -31,6 +33,7 @@ class GitHubCards extends Component {
       baseURL(`Nursery_Management`),
       baseURL(`React-Medium-Blog`),
     ];
+
     await Axios.get("https://github-lang-deploy.herokuapp.com/").then(
       async (res) => await this.setState({ language: res.data })
     );
@@ -38,7 +41,7 @@ class GitHubCards extends Component {
       async (url) =>
         await Axios.get(url, {
           headers: {
-            Authorization: `token ${process.env.GITHUB_API_KEY}`,
+            Authorization: `token ${api_key}`,
           },
         }).then(async (res) => {
           await this.setState({
