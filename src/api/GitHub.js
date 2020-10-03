@@ -1,4 +1,3 @@
-const baseURL = (repo) =>
-  `https://api.github.com/repos/sabesansathananthan/${repo}`;
+const USER_NAME = 'ad-dan';
 
-export default baseURL;
+export {USER_NAME}
