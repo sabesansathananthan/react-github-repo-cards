@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   card: {
-    minWidth: "344px",
+    width: "100%",
     marginLeft: "15px",
     marginRight: "15px",
     margin: "auto",
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 const RepoCard = ({ repo, language }) => {
   const classes = useStyles();
   return (
-    <Grid xs={12} sm={12} lg={3} className={classes.root}>
+    <Grid xs={12} sm={6} lg={3} className={classes.root}>
       <Card className={classes.card}>
         <CardHeader
           avatar={
