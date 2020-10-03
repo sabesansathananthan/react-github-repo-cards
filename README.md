@@ -47,33 +47,16 @@ npm start
 
 ## Configuration
 
-1. Open [`GitHub.js`](./src/api/GitHub.js) in the api folder. Use your medium user name👤 instead of sabesansathananthan.
+1. Open [`GitHub.js`](./src/api/GitHub.js) in the api folder. Use your github user name👤 instead of sabesansathananthan.
 
 ```JavaScript
-`https://api.github.com/repos/sabesansathananthan/${repo}`;
+const USER_NAME = 'sabesansathananthan';
 ```
 
-2. Open [`GitHubCards.js`](./src/components/GitHubCards.js) in the Components folder. Replace your repository names
+2. Create a new .env file in your root folder. Add your github personal access tokens in `.env`
 
-```JavaScript
-let repo = [
-      baseURL(`covid-19-tracker`),
-      baseURL(`material-ui-medium-blog`),
-      baseURL(`github-readme-medium-card`),
-      baseURL(`react-youtube-search-clone`),
-      baseURL(`tamil-song-corpus`),
-      baseURL(`Nozama_Warriors`),
-      baseURL(`Nursery_Management`),
-      baseURL(`React-Medium-Blog`),
-    ];
 ```
-
-3. Add your github personal access tokens in [`GitHubCards.js`](./src/components/GitHubCards.js)
-
-```JavaScript
-headers: {
-            Authorization: "token YOUR_PERSONAL_ACCESS_TOKEN",
-          }
+REACT_APP_API_KEY = YOUR_PERSONAL_ACCESS_TOKEN
 ```
 
 ---
