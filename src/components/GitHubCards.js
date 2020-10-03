@@ -10,15 +10,6 @@ class GitHubCards extends Component {
     repo: [],
     language: [],
   };
-  compare = (a, b) => {
-    if (a.stargazers_count < b.stargazers_count) {
-      return -1;
-    }
-    if (a.stargazers_count > b.stargazers_count) {
-      return 1;
-    }
-    return 0;
-  };
 
   async componentDidMount() {
     const api_key = process.env.REACT_APP_API_KEY;
@@ -50,15 +41,21 @@ class GitHubCards extends Component {
         })
     );
   }
+
+  comapare(a, b) {
+    if (a.stargazers_count > b.stargazers_count) return -1;
+    else if (a.stargazers_count < b.stargazers_count) return 1;
+    else if ((a.stargazers_count = b.stargazers_count)) {
+      if (a.forks_count > b.forks_count) return -1;
+      else if (a.forks_count < b.forks_count) return 1;
+      else return 0;
+    }
+  }
+
   render() {
     const { repo, language } = this.state;
-    repo.sort((a, b) =>
-      a.stargazers_count > b.stargazers_count
-        ? -1
-        : b.stargazers_count > a.stargazers_count
-        ? 1
-        : 0
-    );
+    repo.sort(this.comapare);
+
     return (
       <Grid container spacing={1}>
         {repo.map((data, i) => (
