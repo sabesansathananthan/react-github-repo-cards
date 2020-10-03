@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import RepoCard from "./RepoCard";
 import { Grid } from "@material-ui/core";
-import {USER_NAME} from '../api/Github';
+import { USER_NAME } from "../api/GitHub";
 
 class GitHubCards extends Component {
   Title = [];
@@ -14,22 +14,29 @@ class GitHubCards extends Component {
   async componentDidMount() {
     const api_key = process.env.REACT_APP_API_KEY;
 
-    let repos = await Axios.get(`https://api.github.com/users/${USER_NAME}/repos`);
+    let repos = await Axios.get(
+      `https://api.github.com/users/${USER_NAME}/repos`,
+      {
+        headers: {
+          Authorization: `token ${api_key}`,
+        },
+      }
+    );
 
-    let lang = {}
+    let lang = {};
 
     //Cached language data
-    if (localStorage.getItem('lang')) {
-      lang.data = JSON.parse(localStorage.getItem('lang'))
+    if (localStorage.getItem("lang")) {
+      lang.data = JSON.parse(localStorage.getItem("lang"));
     } else {
       lang = await Axios.get("https://github-lang-deploy.herokuapp.com/");
-      localStorage.setItem('lang', JSON.stringify(lang.data));
+      localStorage.setItem("lang", JSON.stringify(lang.data));
     }
 
     this.setState({
       repo: repos.data,
-      language: lang.data
-    })
+      language: lang.data,
+    });
   }
 
   comapare(a, b) {
@@ -44,10 +51,8 @@ class GitHubCards extends Component {
 
   render() {
     const { repo, language } = this.state;
-
-    const filtered = repo.filter(item => item.stargazers_count || item.watchers_count || item.forks_count )
-    filtered.sort(this.compare);
-    const reducedrepo = filtered.slice(0,8);
+    const filtered = repo.sort(this.comapare);
+    const reducedrepo = filtered.slice(0, 8);
 
     return (
       <Grid container spacing={1}>

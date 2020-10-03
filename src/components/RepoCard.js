@@ -75,7 +75,7 @@ const RepoCard = ({ repo, language }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classes.tittle}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#551A8B" }}
               >
                 {repo.name}
               </a>{" "}
