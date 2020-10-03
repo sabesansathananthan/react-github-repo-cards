@@ -38,7 +38,7 @@ class GitHubCards extends Component {
       async (url) =>
         await Axios.get(url, {
           headers: {
-            Authorization: `token ${process.env.GitHubApiKey}`,
+            Authorization: `token ${process.env.GITHUB_API_KEY}`,
           },
         }).then(async (res) => {
           await this.setState({
