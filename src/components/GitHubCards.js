@@ -31,11 +31,22 @@ class GitHubCards extends Component {
       language: lang.data
     })
   }
+
+  comapare(a, b) {
+    if (a.stargazers_count > b.stargazers_count) return -1;
+    else if (a.stargazers_count < b.stargazers_count) return 1;
+    else if ((a.stargazers_count = b.stargazers_count)) {
+      if (a.forks_count > b.forks_count) return -1;
+      else if (a.forks_count < b.forks_count) return 1;
+      else return 0;
+    }
+  }
+
   render() {
     const { repo, language } = this.state;
-    
-    const filtered = repo.filter(item => item.stargazers_count || item.watchers_count )
-    filtered.sort((a, b) => a.stargazers_count - b.stargazers_count);
+
+    const filtered = repo.filter(item => item.stargazers_count || item.watchers_count || item.forks_count )
+    filtered.sort(this.compare);
     const reducedrepo = filtered.slice(0,8);
 
     return (
