@@ -31,9 +31,20 @@ class GitHubCards extends Component {
       language: lang.data
     })
   }
+
+  comapare(a, b) {
+    if (a.stargazers_count > b.stargazers_count) return -1;
+    else if (a.stargazers_count < b.stargazers_count) return 1;
+    else if ((a.stargazers_count = b.stargazers_count)) {
+      if (a.forks_count > b.forks_count) return -1;
+      else if (a.forks_count < b.forks_count) return 1;
+      else return 0;
+    }
+  }
+
   render() {
     const { repo, language } = this.state;
-    repo.sort((a, b) => a.startgazers_count - b.startgazers_count);
+    repo.sort(this.comapare);
 
     return (
       <Grid container spacing={1}>
