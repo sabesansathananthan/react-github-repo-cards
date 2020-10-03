@@ -33,11 +33,14 @@ class GitHubCards extends Component {
   }
   render() {
     const { repo, language } = this.state;
-    repo.sort((a, b) => a.startgazers_count - b.startgazers_count);
+    
+    const filtered = repo.filter(item => item.stargazers_count || item.watchers_count )
+    filtered.sort((a, b) => a.stargazers_count - b.stargazers_count);
+    const reducedrepo = filtered.slice(0,8);
 
     return (
       <Grid container spacing={1}>
-        {repo.map((data, i) => (
+        {reducedrepo.map((data, i) => (
           <RepoCard repo={data} key={i} language={language} />
         ))}
       </Grid>
