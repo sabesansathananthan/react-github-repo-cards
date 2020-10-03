@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import baseURL from "../api/GitHub";
 import RepoCard from "./RepoCard";
 import { Grid } from "@material-ui/core";
+import {USER_NAME} from '../api/Github';
 
 class GitHubCards extends Component {
   Title = [];
@@ -14,32 +14,22 @@ class GitHubCards extends Component {
   async componentDidMount() {
     const api_key = process.env.REACT_APP_API_KEY;
 
-    let repo = [
-      baseURL(`covid-19-tracker`),
-      baseURL(`material-ui-medium-blog`),
-      baseURL(`github-readme-medium-card`),
-      baseURL(`react-youtube-search-clone`),
-      baseURL(`tamil-song-corpus`),
-      baseURL(`Nozama_Warriors`),
-      baseURL(`Nursery_Management`),
-      baseURL(`React-Medium-Blog`),
-    ];
+    let repos = await Axios.get(`https://api.github.com/users/${USER_NAME}/repos`);
 
-    await Axios.get("https://github-lang-deploy.herokuapp.com/").then(
-      async (res) => await this.setState({ language: res.data })
-    );
-    repo.map(
-      async (url) =>
-        await Axios.get(url, {
-          headers: {
-            Authorization: `token ${api_key}`,
-          },
-        }).then(async (res) => {
-          await this.setState({
-            repo: [...this.state.repo, res.data],
-          });
-        })
-    );
+    let lang = {}
+
+    //Cached language data
+    if (localStorage.getItem('lang')) {
+      lang.data = JSON.parse(localStorage.getItem('lang'))
+    } else {
+      lang = await Axios.get("https://github-lang-deploy.herokuapp.com/");
+      localStorage.setItem('lang', JSON.stringify(lang.data));
+    }
+
+    this.setState({
+      repo: repos.data,
+      language: lang.data
+    })
   }
 
   comapare(a, b) {
@@ -54,11 +44,14 @@ class GitHubCards extends Component {
 
   render() {
     const { repo, language } = this.state;
-    repo.sort(this.comapare);
+
+    const filtered = repo.filter(item => item.stargazers_count || item.watchers_count || item.forks_count )
+    filtered.sort(this.compare);
+    const reducedrepo = filtered.slice(0,8);
 
     return (
       <Grid container spacing={1}>
-        {repo.map((data, i) => (
+        {reducedrepo.map((data, i) => (
           <RepoCard repo={data} key={i} language={language} />
         ))}
       </Grid>
