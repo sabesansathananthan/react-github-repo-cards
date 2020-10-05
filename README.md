@@ -62,7 +62,7 @@ REACT_APP_API_KEY = YOUR_PERSONAL_ACCESS_TOKEN
 ---
 
 ## Deployment Status
-
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/sabesansathananthan/react-github-repo-cards)
 ---
 
 ## License 📄
