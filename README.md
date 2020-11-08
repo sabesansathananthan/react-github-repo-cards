@@ -58,6 +58,7 @@ To setup the app for development on your local machine, please follow the instru
     ```
 
 4.  Add Token
+
     Create a new .env file in your root folder. Add your github personal access tokens in `.env`
 
     ```
